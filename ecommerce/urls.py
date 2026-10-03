@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from userapp.views import signup,login,dashboard
+from userapp.views import signup,login,dashboard,profileUpdate,profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",signup,name="signup_link"),
     path("login/",login,name="login_link"),
-    path("dashboard/",dashboard,name="dashboard_link")
+    path("dashboard/",dashboard,name="dashboard_link"),
+    path("profile_update/",profileUpdate,name="profile_update"),
+    path("profile/",profile,name="profile_link")
     
 ]
 
