@@ -4,8 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+    .navbar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: blueviolet;
+      color: white;
+      height: 75px;
+    }
+  </style>
 </head>
 <body>
+  <div class="navbar">
+    <a href="{% url 'dashboard_link' %}"><h1>Dashboard</h1></a>
+    <a href="{% url 'profile_update_link' %}"><h1>Update Profile</h1></a>
+  </div>
   <center><h1>Profile</h1></center>
   <h1>Username: {{user.user.username}}</h1>
   <h1>Email: {{user.user.email}}</h1>

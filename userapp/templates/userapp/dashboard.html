@@ -64,7 +64,7 @@
     <div class="right">
       <h2>Products</h2>
       <h2>Orders</h2>
-      <h2>Profile</h2>
+      <a href="{% url 'profile_link' %}"><h2>Profile</h2></a>
     </div>
 
   </div>
@@ -75,7 +75,7 @@
     {% for i in products %}
     <div class="products">
       <img src="{{i.product_image.url}}" height="250px" width="200px" alt="">
-    <button>View</button>
+    <a href="{% url 'product_details_link' i.id %}"><button>View</button></a>
     </div>
   {% endfor %}
 </div>

@@ -58,5 +58,8 @@ def profile(request):
   user_id = request.session.get("user_id")
   user  = Userprofile.objects.filter(id = user_id).first()
   return render(request,"userapp/profile.html",{"user":user})
+
+def product_details(request,id):
+  return render(request,"userapp/product_details.html")
        
 
