@@ -38,4 +38,20 @@ class Userprofile(models.Model):
   
   def __str__(self):
     return f"{self.user.username} Profile"
+  
+  
+class Order(models.Model):
+  user = models.ForeignKey(User,on_delete=models.CASCADE)
+  product = models.ForeignKey(Product,on_delete=models.CASCADE)
+  quantity = models.PositiveIntegerField()
+  total = models.PositiveIntegerField()
+  city = models.CharField(max_length=100)
+  pincode = models.CharField(max_length=100)
+  state = models.CharField(max_length=100)
+  address = models.TextField()
+  ordered_date = models.DateTimeField(auto_now_add=True)
+  status = models.CharField(max_length=100,default="Placed")
+  
+  def __str__(self):
+    return f"Order Placed by {self.user.username} - {self.product.name}"
 

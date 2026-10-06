@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <center><h1>Billing Page</h1></center>
+  <center>
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" placeholder="Enter Quantity" required min="1" name="quantity"> <br>
+      <input type="text" placeholder="Enter city" required name="city"> <br>
+      <input type="text" placeholder="Enter pincode" required name="pincode"> <br>
+      <input type="text" placeholder="Enter State" required name="state"> <br>
+      <textarea name="address" placeholder="Enter Address" required></textarea> <br>
+      <button>Order</button>
+    </form>
+  </center>
+</body>
+</html>

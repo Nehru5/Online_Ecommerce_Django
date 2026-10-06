@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from userapp.models import User,Product,Userprofile
-
+from userapp.models import User,Product,Userprofile,Order
+import decimal
 def signup(request):
   if request.method == "POST":
     username = request.POST.get("username")
@@ -60,6 +60,35 @@ def profile(request):
   return render(request,"userapp/profile.html",{"user":user})
 
 def product_details(request,id):
-  return render(request,"userapp/product_details.html")
+  product = Product.objects.get(id = id)
+  return render(request,"userapp/product_details.html",{"product":product})
+
+
+
+def order(request,id):
+  if request.method == "POST":
+    quantity = request.POST.get("quantity")
+    city = request.POST.get("city")
+    pincode = request.POST.get("pincode")
+    state = request.POST.get("state")
+    address = request.POST.get("address")
+    
+    user_id = request.session.get("user_id")
+    user = User.objects.get(id = user_id)
+    product = Product.objects.get(id = id)
+    total = product.price*decimal.Decimal(quantity)
+    
+    Order.objects.create(
+      user=user,
+      product=product,
+      quantity=quantity,
+      total=total,
+      city = city,
+      pincode = pincode,
+      state = state,
+      address = address
+    )
+    return redirect("dashboard_link")
+  return render(request,"userapp/order.html")
        
 
