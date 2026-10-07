@@ -33,10 +33,14 @@ def login(request):
   
   
 def dashboard(request):
+  if "user_id" not in request.session:
+    return redirect("login_link")
   products = Product.objects.all()
   return render(request,"userapp/dashboard.html",{"products":products})
 
 def profileUpdate(request):
+  if "user_id" not in request.session:
+    return redirect("login_link")
   if request.method == "POST":
     city = request.POST.get("city")
     pincode = request.POST.get("pincode")
@@ -55,6 +59,8 @@ def profileUpdate(request):
   
   
 def profile(request):
+  if "user_id" not in request.session:
+    return redirect("login_link")
   user_id = request.session.get("user_id")
   user  = Userprofile.objects.filter(id = user_id).first()
   return render(request,"userapp/profile.html",{"user":user})
@@ -66,6 +72,8 @@ def product_details(request,id):
 
 
 def order(request,id):
+  if "user_id" not in request.session:
+    return redirect("login_link")
   if request.method == "POST":
     quantity = request.POST.get("quantity")
     city = request.POST.get("city")
@@ -88,7 +96,19 @@ def order(request,id):
       state = state,
       address = address
     )
-    return redirect("dashboard_link")
+    return redirect("order_list_link")
   return render(request,"userapp/order.html")
+
+def order_list(request):
+  if "user_id" not in request.session:
+    return redirect("login_link")
+  user_id = request.session.get("user_id")
+  orders = Order.objects.filter(user_id = user_id).order_by("-ordered_date")
+  print(orders)
+  return render(request,"userapp/order_list.html",{"orders":orders})
+
+def logout(request):
+  request.session.flush()
+  return redirect("login_link")
        
 

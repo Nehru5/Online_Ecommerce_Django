@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from userapp.views import signup,login,dashboard,profileUpdate,profile,product_details,order
+from userapp.views import signup,login,dashboard,profileUpdate,profile,product_details,order,order_list,logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +28,9 @@ urlpatterns = [
     path("profile_update/",profileUpdate,name="profile_update_link"),
     path("profile/",profile,name="profile_link"),
     path("product_details/<int:id>/",product_details,name="product_details_link"),
-    path("order/<int:id>/",order,name="order_link")
+    path("order/<int:id>/",order,name="order_link"),
+    path("order_list/",order_list,name="order_list_link"),
+    path("logout/",logout,name="logout_link")
     
 ]
 

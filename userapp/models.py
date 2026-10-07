@@ -53,5 +53,5 @@ class Order(models.Model):
   status = models.CharField(max_length=100,default="Placed")
   
   def __str__(self):
-    return f"Order Placed by {self.user.username} - {self.product.name}"
+    return f"Order Placed by {self.user.username} - {self.product.name} - {self.status }"
 

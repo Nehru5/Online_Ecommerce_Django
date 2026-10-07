@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <center><h1>Your Orders</h1></center>
+  {% for i in orders %}
+  <img src="{{i.product.product_image.url}}" height="200px" width="200px" alt="">
+  <h2>Name: {{i.product.name}}</h2>
+  <h2>Price: {{i.product.price}}</h2>
+  <h2>Quantity: {{i.quantity}} x {{i.product.price}}</h2>
+  <h3>Total: {{i.total}}</h3>
+  <h3>Date: {{i.ordered_date}}</h3>
+  <h2>Status: <span style="color: green;">{{i.status}}</span></h2>
+
+  {% endfor %}
+</body>
+</html>
